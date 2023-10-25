@@ -1,11 +1,13 @@
 import React from "react";
-import Temp from "./components/Temp";
+
+import { DatePicker } from "antd";
 
 function App() {
   return (
     <div>
       <header>App</header>
-      <Temp />
+
+      <DatePicker />
     </div>
   );
 }
