@@ -1,4 +1,5 @@
 import { http } from '../_http-client/http-client';
+import { useQuery } from 'react-query';
 
 interface PaginationPayload {
   pageNumber: number;
@@ -25,3 +26,6 @@ const url = '/api/v1/app-service/get-apps';
 export const getApps = (pagination: PaginationPayload) => {
   return http.put<AppsListDTO, PaginationPayload>(url, pagination);
 };
+
+export const useAppsList = (pagination: PaginationPayload) =>
+  useQuery(['getApps', pagination.pageNumber, pagination.pageSize], () => getApps(pagination));
