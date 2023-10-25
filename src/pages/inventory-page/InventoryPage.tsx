@@ -1,40 +1,40 @@
 import { AppLayout } from '../../components/app-layout/AppLayout';
 import { Table } from 'antd';
+import { useEffect } from 'react';
+import { getApps } from '../../api/app-service';
 
 const dataSource = [
   {
-    key: '1',
-    name: 'Mike',
-    age: 32,
-    address: '10 Downing Street',
-  },
-  {
-    key: '2',
-    name: 'John',
-    age: 42,
-    address: '10 Downing Street',
+    appId: 'amplitude.com',
+    appName: 'Amplitude',
+    appSources: ['APP_SOURCE_GOOGLE'],
+    category: 'Data Analytics',
   },
 ];
 
 const columns = [
   {
     title: 'Name',
-    dataIndex: 'name',
-    key: 'name',
+    dataIndex: 'appName',
+    key: 'appName',
   },
   {
-    title: 'Age',
-    dataIndex: 'age',
-    key: 'age',
+    title: 'Category',
+    dataIndex: 'category',
+    key: 'category',
   },
   {
-    title: 'Address',
-    dataIndex: 'address',
-    key: 'address',
+    title: 'Connector',
+    dataIndex: 'appSources',
+    key: 'appSources',
   },
 ];
 
 export const InventoryPage = () => {
+  useEffect(() => {
+    getApps({ pageNumber: 0, pageSize: 25 }).then(r => console.log(r));
+  }, []);
+
   return (
     <AppLayout>
       <Table dataSource={dataSource} columns={columns} />
