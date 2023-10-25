@@ -2,7 +2,7 @@ import React from 'react';
 
 import { InventoryPage } from './pages/inventory-page/InventoryPage';
 import { ReactQueryProvider } from './components/ReactQueryProvider/ReactQueryProvider';
-import { AppLayout } from './components/app-layout/AppLayout';
+import { AppLayout } from './components/AppLayout/AppLayout';
 
 function App() {
   return (
