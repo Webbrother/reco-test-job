@@ -1,16 +1,8 @@
-import { AppLayout } from '../../components/app-layout/AppLayout';
-import { Table } from 'antd';
-import { useEffect } from 'react';
-import { getApps } from '../../api/app-service';
-
-const dataSource = [
-  {
-    appId: 'amplitude.com',
-    appName: 'Amplitude',
-    appSources: ['APP_SOURCE_GOOGLE'],
-    category: 'Data Analytics',
-  },
-];
+import { Alert, Table } from 'antd';
+import { useAppsList } from '../../api/app-service/apps-list';
+import { AppOverview } from '../../components/AppOverview/AppOverview';
+import { useState } from 'react';
+import { useOpenClose } from '../../utils/hooks/useOpenClose';
 
 const columns = [
   {
@@ -31,13 +23,33 @@ const columns = [
 ];
 
 export const InventoryPage = () => {
-  useEffect(() => {
-    getApps({ pageNumber: 0, pageSize: 25 }).then(r => console.log(r));
-  }, []);
+  const { visible, open, close } = useOpenClose();
+  const [activeAppId, setActiveAppId] = useState(null);
+
+  const { isLoading, error, data } = useAppsList({ pageSize: 25, pageNumber: 0 });
+
+  if (error) {
+    // @ts-ignore
+    return <Alert message='Error' description={error.message} type='error' closable={false} />;
+  }
 
   return (
-    <AppLayout>
-      <Table dataSource={dataSource} columns={columns} />
-    </AppLayout>
+    <>
+      <Table
+        dataSource={data?.appRows}
+        columns={columns}
+        loading={isLoading}
+        onRow={(record, rowIndex) => {
+          return {
+            onClick: (...args) => {
+              console.log('on row click', record);
+              open();
+            },
+          };
+        }}
+      />
+
+      <AppOverview appId={activeAppId} open={visible} onClose={close} />
+    </>
   );
 };
