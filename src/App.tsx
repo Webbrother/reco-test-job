@@ -1,15 +1,9 @@
 import React from "react";
 
-import { DatePicker } from "antd";
+import { InventoryPage } from "./pages/inventory-page/InventoryPage";
 
 function App() {
-  return (
-    <div>
-      <header>App</header>
-
-      <DatePicker />
-    </div>
-  );
+  return <InventoryPage />;
 }
 
 export default App;
