@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-import { InventoryPage } from "./pages/inventory-page/InventoryPage";
+import { InventoryPage } from './pages/inventory-page/InventoryPage';
 
 function App() {
   return <InventoryPage />;

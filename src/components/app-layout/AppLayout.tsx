@@ -1,7 +1,7 @@
-import { Layout } from "antd";
-import { PropsWithChildren } from "react";
+import { Layout } from 'antd';
+import { PropsWithChildren } from 'react';
 
-import styles from "./AppLayout.module.css";
+import styles from './AppLayout.module.css';
 
 const { Header, Footer, Content } = Layout;
 
