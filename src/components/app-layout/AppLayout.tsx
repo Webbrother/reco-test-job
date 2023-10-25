@@ -10,7 +10,7 @@ export const AppLayout = ({ children }: PropsWithChildren) => {
     <Layout>
       <Header className={styles.header}>Header</Header>
       <Content className={styles.content}>{children}</Content>
-      <Footer>Footer</Footer>
+      <Footer className={styles.footer}>Footer</Footer>
     </Layout>
   );
 };
